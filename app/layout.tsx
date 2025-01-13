@@ -17,14 +17,16 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={inter.className} suppressHydrationWarning>
+      <body className={`${inter.className} min-h-screen bg-gradient-to-b from-gray-50 to-gray-100`} suppressHydrationWarning>
         <ClerkProvider
           appearance={{
             baseTheme: undefined
           }}
           publishableKey={process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY}
         >
-          {children}
+          <main className="min-h-screen">
+            {children}
+          </main>
         </ClerkProvider>
       </body>
     </html>
