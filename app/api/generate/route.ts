@@ -5,20 +5,27 @@ const replicate = new Replicate({
   auth: process.env.REPLICATE_API_TOKEN,
 });
 
-export async function POST(req: Request) {
+export async function POST(request: Request) {
   try {
-    const { prompt } = await req.json();
-    
     const output = await replicate.run(
       "fofr/sdxl-emoji:dee76b5afde21b0f01ed7925f0665b7e879c50ee718c5f78a9d38e04d523cc5e",
       {
         input: {
-          prompt: prompt,
-          num_outputs: 1
+          prompt: "A cute emoji of a cat",
+          negative_prompt: "ugly, blurry, low quality, text, watermark, signature, border, label",
+          width: 1024,
+          height: 1024,
+          num_outputs: 1,
+          scheduler: "K_EULER",
+          num_inference_steps: 50,
+          guidance_scale: 7.5,
+          prompt_strength: 0.8,
+          refine: "expert_ensemble_refiner",
+          high_noise_frac: 0.8,
         }
       }
-    );
-    
+    ) as string[];
+
     return NextResponse.json({ success: true, url: output[0] });
   } catch (error) {
     console.error('Error generating SVG:', error);
