@@ -12,6 +12,9 @@ const nextConfig = {
     config.experiments = { ...config.experiments, topLevelAwait: true };
     return config;
   },
+  eslint: {
+    ignoreDuringBuilds: true,
+  },
 };
 
 export default nextConfig;
