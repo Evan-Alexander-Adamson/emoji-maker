@@ -1,9 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  output: 'export',
-  basePath: '/emoji-maker',
   images: {
-    unoptimized: true,
     remotePatterns: [
       {
         protocol: 'https',
